@@ -1,11 +1,13 @@
 let c;
 let socket;
 let data;
+let requestdata;
 function setup() {
 let canvas = createCanvas(displayWidth, displayHeight);
 background(0)
 socket = io.connect("http://127.0.0.1:80");
 socket.on("mouseout", newDrawing);
+
 }
 
 function newDrawing(data) {
@@ -30,4 +32,8 @@ socket.emit("mousein", data)
 }
 function savefunction() {
     saveCanvas(canvas, 'MyCanvas', 'png')
+}
+function loadfunction() {
+requestdata = "Requesting data."
+    socket.emit("requestLoad", requestdata)
 }
